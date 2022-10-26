@@ -19,30 +19,34 @@ const galleryCard = galleryItems
   </a>
 </div>`;
   })
-    .join("");
-  
+  .join("");
+
 boxForGalleryCard.insertAdjacentHTML("beforeend", galleryCard);
 
-    
 const onImageClick = (event) => {
-    event.preventDefault();
-    if (!event.target.classList.contains("gallery__image")) {
-        return;
-    }
-    const instance = basicLightbox.create(`
+  event.preventDefault();
+
+  if (!event.target.classList.contains("gallery__image")) {
+    return;
+  }
+
+  const instance = basicLightbox.create(`
     <img src="${event.target.dataset.source}" width="1200">
 `);
-    
-    instance.show();
+  instance.show();
 
-    if (instance.visible()) {
-    window.addEventListener("keydown", (event) => {
-            if (event.code === "Escape") {
-             instance.close()
-            } 
-        })
-    }   
+  window.addEventListener("keydown", closeImageKey);
 };
 
+function closeImageKey(event) {
+  console.log(event);
+  if (event.code === "Escape") {
+    document
+      .querySelector(".basicLightbox")
+      .classList.remove("basicLightbox--visible");
+    window.removeEventListener("keydown", closeImageKey);
+  }
+}
 
 boxForGalleryCard.addEventListener("click", onImageClick);
+// class="basicLightbox basicLightbox--img basicLightbox--visible"
