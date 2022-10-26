@@ -39,13 +39,13 @@ const onImageClick = (event) => {
 };
 
 function closeImageKey(event) {
-  console.log(event);
   if (event.code === "Escape") {
     document
       .querySelector(".basicLightbox")
       .classList.remove("basicLightbox--visible");
     window.removeEventListener("keydown", closeImageKey);
   }
+
 }
 
 boxForGalleryCard.addEventListener("click", onImageClick);
