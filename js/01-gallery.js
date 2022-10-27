@@ -34,7 +34,7 @@ const onImageClick = (event) => {
 `);
   instance.show();
 
-  window.addEventListener("keydown", closeImageKey);
+  document.addEventListener("keydown", closeImageKey);
 };
 
 function closeImageKey(event) {
@@ -42,7 +42,7 @@ function closeImageKey(event) {
     document
       .querySelector(".basicLightbox")
       .classList.remove("basicLightbox--visible");
-    window.removeEventListener("keydown", closeImageKey);
+    document.removeEventListener("keydown", closeImageKey);
   }
 
 }
